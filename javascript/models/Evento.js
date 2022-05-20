@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 //La creación del documento dentro de la colleción en mongo
 var Schema = mongoose.Schema;
 var modeloEvento = new Schema({
-    id: String,
+    _id: String,
     titulo: String,
     fecha: Date,
     lugar: String,
@@ -10,5 +10,5 @@ var modeloEvento = new Schema({
     
 });
 
-var modelo = moongose.model('Evento', modeloEvento);
+var modelo = mongoose.model('Evento', modeloEvento);
 module.exports = modelo;

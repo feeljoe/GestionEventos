@@ -1,8 +1,9 @@
 //Aquí se conecta a la base de datos en mongoDB
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://feel_joe:<StdP3875>@cluster0.uhfd5.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+var mongoDB = 'mongodb://localhost:27017/eventos';
 
-var db = mongoose.connection;
+mongoose.connect(mongoDB, { useNewUrlParser: true })
+.then(() => {console.log("conexion exitosa")})
+.catch(err => {console.log(err)});
 
-db.on('error', console.error.bind(console, 'MongoDB connection Error: '));
+module.exports = {mongoose};

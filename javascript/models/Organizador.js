@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 //La creación del documento dentro de la colleción en mongo
 var Schema = mongoose.Schema;
 var modeloOrganizador = new Schema({
-    id: String,
+    _id: String,
     areaCoordinacion: String,
     nombre: String,
     apellido: String,

@@ -49,7 +49,7 @@ const getEventos = (req, res) => {
   sería enfocado para los organizadores por si estos tienen más de 
   un evento y quieren hacer algo con alguno en específico.*/
 const getEvento = (req, res) => {
-  Evento.findById(req.params.id, (err, evento) => {
+  Evento.findById(req.params._id, (err, evento) => {
     if (err) {
       res.status(400).json({
         status: "error",
@@ -66,7 +66,7 @@ const getEvento = (req, res) => {
 
 //Elimina el evento de la base de datos
 const eliminarEvento = (req, res) => {
-  Evento.findByIdAndDelete({ _id: req.params.id }, (err, evento) => {
+  Evento.findByIdAndDelete({ _id: req.params._id }, (err, evento) => {
     if (err) {
       res.status(400).json({
         status: "error",
@@ -84,7 +84,7 @@ const eliminarEvento = (req, res) => {
 //Actualiza el evento en la base de datos, ya sea cambio de nombre, lugar, fecha, etc 
 const actualizarEvento = (req, res) => {
   Evento.findByIdAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params._id },
     req.body,
     { new: true },
     (err, evento) => {
