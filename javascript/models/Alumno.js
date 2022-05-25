@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 //La creación del documento dentro de la colleción en mongo
 var Schema = mongoose.Schema;
 var modeloAlumno = new Schema({
@@ -6,8 +6,8 @@ var modeloAlumno = new Schema({
     carrera: String,
     nombre: String,
     apellido: String,
-    evento: Evento,
+    contrasenna: String,
     asistencia: Boolean
 });
-var modelo = moongose.model('Alumno', modeloAlumno);
+var modelo = mongoose.model('alumno', modeloAlumno);
 module.exports = modelo;

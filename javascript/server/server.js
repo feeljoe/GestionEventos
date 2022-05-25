@@ -23,7 +23,7 @@ app.use(express.static(publicPath));
 
 // sendFile will go here
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/login.html'));
   });
 
 
@@ -37,7 +37,7 @@ app.all('*', (req, resp, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "../public/index.html");
+    res.sendFile(__dirname + "../public/login.html");
 });
 
 app.use(express.urlencoded({ extended: true }));

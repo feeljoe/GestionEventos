@@ -10,5 +10,5 @@ var modeloEvento = new Schema({
     
 });
 
-var modelo = mongoose.model('Evento', modeloEvento);
+var modelo = mongoose.model('eventos', modeloEvento);
 module.exports = modelo;

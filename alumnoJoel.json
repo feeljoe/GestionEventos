@@ -1,0 +1,10 @@
+{
+  "_id": {
+    "$oid": "00000202417"
+  }, 
+  "carrera": "ISW",
+  "nombre":"Joel",
+  "apellido":"Valenzuela",
+  "contrasenna":"$2a$10$iqO2PD50bO3EWIPXw7OiD.7Ho8jpxHvoqj7F0a08yxp.sHjI8ibfC"
+  
+}

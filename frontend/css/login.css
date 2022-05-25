@@ -80,7 +80,7 @@ input::-webkit-input-placeholder {
 }
 
 input:focus::-webkit-input-placeholder {
-  color: #d4d3d3;
+  color: #e74c3c;
 }
 
 .logo{

@@ -1,0 +1,89 @@
+<!-- Formulario de registro para el evento del alumno -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- navbar -->
+    <div id="navbar-animmenu">
+        <ul class="show-dropdown main-navbar">
+          <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+          </div>
+          <li>
+            <div id="img">
+              <img src="../img/logoItson.png" width="100px" class="logo" />
+            </div>
+          </li>
+          
+        </ul>
+        <ul class="signoff">
+          <li>
+            <a href="../html/login.html"><i></i>Cerrar Sesión</a>
+          </li>
+        </ul>
+      </div>
+      
+    <!-- Google Form Template -->
+    <div class="testbox">
+        <form action="/">
+          <div class="item">
+            <p>Your name</p>
+            <div>
+              <input type="text" name="name" placeholder="First" />
+              <input type="text" name="name" placeholder="Last" />
+            </div>
+          </div>
+          <div class="item">
+            <p>Your email</p>
+            <input type="text" name="name" />
+          </div>
+          <div class="item">
+            <p>Date of complaint</p>
+            <input type="date" name="name" required />
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="item">
+            <p>Your department</p>
+            <select>
+              <option value="">*Please select*</option>
+              <option value="A">Department A</option>
+              <option value="B">Department B</option>
+              <option value="C">Department C</option>
+              <option value="D">Department D</option>
+              <option value="E">Department E</option>
+            </select>
+          </div>
+          <div class="item">
+            <p>Office manager name</p>
+            <input type="text" name="name" />
+          </div>
+          <div class="item">
+            <p>The person(s) involved in this complaint are</p>
+            <textarea rows="5"></textarea>
+          </div>
+          <div class="item">
+            <p>
+              Note all relevant dates, places, events, etc. pertaining to the
+              complaint
+            </p>
+            <textarea rows="5"></textarea>
+          </div>
+          <div class="item">
+            <p>Signature</p>
+            <textarea rows="5"></textarea>
+          </div>
+          <div class="btn-block">
+            <button type="submit" href="/">Send</button>
+          </div>
+        </form>
+      </div>
+
+      <script src="../javascript/navbar.js"></script>
+</body>
+</html>
