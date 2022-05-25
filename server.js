@@ -2,9 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const router = require("./javascript/server/routes.js");
-const { mongoose } = require("./javascript/database/Connection.js");
+const {mongoose} = require("./javascript/database/Connection.js");
 // const ErrorHandler = require('../errorHandler/errorHandler.js');
-
 const app = express();
 app.set("port", 3000);
 app.use(express.json());

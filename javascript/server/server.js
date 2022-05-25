@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-
+// const {mongoose} = require("./javascript/database/Connection.js");
 const router = require('../server/routes.js');
 const ErrorHandler = require('../errorHandler/errorHandler.js');
 

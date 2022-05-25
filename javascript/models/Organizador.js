@@ -10,5 +10,5 @@ var modeloOrganizador = new Schema({
     evento: Evento,
 });
 
-var modelo = moongose.model('Organizador', modeloOrganizador);
+var modelo = moongose.model('organizadores', modeloOrganizador);
 module.exports = modelo;

@@ -34,35 +34,41 @@ const register = (req, res, next) => {
     })
 }
 
-const login = (req, res, next) =>{
+const login = async (req, res, next) =>{
     console.log(req.body);
 
     var id = req.body.id
     var contrasenna = req.body.contrasenna
+
     Alumno.findOne({id:id})
     .then(alu => {
         console.log(alu)
         if(alu){
             bcrypt.compare(contrasenna, alu.contrasenna, function(err, result){
                 if(err){
-                    res.json({
+                    console.log(ERROR);
+                    res.status(400).json({
                         error: err
-                    })
+                    });
                 }
                 if(result){
+                    console.log("RESULT TRUE");
+
                     let token = jwt.sign({name: alu.nombre}, 'verySecretValue', {expiresIn:'1h'})
-                    res.json({
+                    res.status(200).json({
                         message: 'Inicio de sesión correcto',
                         token
-                    })
+                    });
                 }else{
-                    res.json({
+                    console.log("RESULT FALSE");
+
+                    res.status(404).json({
                         message: 'la contraseña no es corecta'
-                    })
+                    });
                 }
             })
         }else{
-            res.json({
+            res.status(404).json({
                 message: 'No se pudo encontrar al alumno'
             })
         }
