@@ -6,6 +6,7 @@ var modeloOrganizador = new Schema({
     areaCoordinacion: String,
     nombre: String,
     apellido: String,
+    contrasenna: String,
     evento: Evento,
 });
 

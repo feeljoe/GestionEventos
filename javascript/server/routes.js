@@ -1,21 +1,22 @@
 const express = require("express");
 
-const alumno = require("../controllers/AlumnoController.js");
-const organizador = require("../controllers/OrganizadorController.js");
-const evento = require("../controllers/EventoController.js");
+const alumno = require("../controllers/AlumnoController");
+const organizador = require("../controllers/OrganizadorController");
+const evento = require("../controllers/EventoController");
 
 const router = express.Router();
 
 //Evento
-router.put("/evento/:_id", evento.actualizarEvento);
-router.get("/evento/:_id", evento.getEvento);
+router.put("/evento", evento.actualizarEvento);
+router.get("/evento", evento.getEvento);
 router.get("/eventos", evento.getEventos);
-router.get("/registrosEvento/:_id", evento.getAlumnosPorEvento);
-router.delete("/evento/:_id", evento.eliminarEvento);
+router.get("/registrosEvento", evento.getAlumnosPorEvento);
+router.delete("/evento", evento.eliminarEvento);
 router.post("/evento", evento.guardarEvento);
 
 //Alumno
-// router.post('/alumno/:_id', alumno.actualizarAlumno);
+router.post('/registroA', alumno.register);
+router.post('/loginA', alumno.login);
 // router.get('/alumnos', alumno.getAlumnos);
 // router.get('/alumno/:_id', alumno.getAlumno);
 
