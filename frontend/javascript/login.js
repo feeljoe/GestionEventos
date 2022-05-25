@@ -26,7 +26,6 @@ function submitData(e) {
       alert("Autorizacion denegada");
     }
 
-    console.log(response);
   })
   
   
