@@ -1,88 +1,102 @@
+<!-- Form utilizado para crear un evento -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- navbar -->
-    <div id="navbar-animmenu">
-        <ul class="show-dropdown main-navbar">
-          <div class="hori-selector">
-            <div class="left"></div>
-            <div class="right"></div>
-          </div>
-          <li>
-            <div id="img">
-              <img src="../img/logoItson.png" width="100px" class="logo" />
-            </div>
-          </li>
-          
-        </ul>
-        <ul class="signoff">
-          <li>
-            <a href="../html/login.html"><i></i>Cerrar Sesión</a>
-          </li>
-        </ul>
-      </div>
-      
-    <!-- Google Form Template -->
-    <div class="testbox">
-        <form action="/">
-          <div class="item">
-            <p>Your name</p>
-            <div>
-              <input type="text" name="name" placeholder="First" />
-              <input type="text" name="name" placeholder="Last" />
-            </div>
-          </div>
-          <div class="item">
-            <p>Your email</p>
-            <input type="text" name="name" />
-          </div>
-          <div class="item">
-            <p>Date of complaint</p>
-            <input type="date" name="name" required />
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <div class="item">
-            <p>Your department</p>
-            <select>
-              <option value="">*Please select*</option>
-              <option value="A">Department A</option>
-              <option value="B">Department B</option>
-              <option value="C">Department C</option>
-              <option value="D">Department D</option>
-              <option value="E">Department E</option>
-            </select>
-          </div>
-          <div class="item">
-            <p>Office manager name</p>
-            <input type="text" name="name" />
-          </div>
-          <div class="item">
-            <p>The person(s) involved in this complaint are</p>
-            <textarea rows="5"></textarea>
-          </div>
-          <div class="item">
-            <p>
-              Note all relevant dates, places, events, etc. pertaining to the
-              complaint
-            </p>
-            <textarea rows="5"></textarea>
-          </div>
-          <div class="item">
-            <p>Signature</p>
-            <textarea rows="5"></textarea>
-          </div>
-          <div class="btn-block">
-            <button type="submit" href="/">Send</button>
-          </div>
-        </form>
-      </div>
 
-      <script src="../javascript/navbar.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/form.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- navbar -->
+  <div id="navbar-animmenu">
+    <ul class="show-dropdown main-navbar">
+      <div class="hori-selector">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+      <li>
+        <div id="img">
+          <img src="../img/logoItson.png" width="100px" class="logo" />
+        </div>
+      </li>
+
+    </ul>
+    <ul class="signoff">
+      <li>
+        <a href="../html/login.html"><i></i>Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Google Form Template -->
+  <div class="form">
+    <div class="title-div">
+      <h1>Creación de evento</h1>
+      <p class="required">*Requerido</p>
+    </div>
+
+    <div class="name-div">
+      <div class="name">
+        Nombre del evento<span class="required"> *</span>
+      </div>
+      <div class="input-div">
+        <input type="input" name="answer" placeholder="Tu respuesta" />
+      </div>
+    </div>
+
+    <div class="description-div">
+      <div class="name">Descripción</div>
+      <div class="input-div">
+        <input type="input" name="answer" placeholder="Tu respuesta" />
+      </div>
+    </div>
+
+    <div class="ubication-div">
+      <div class="name">Fecha y hora</div>
+      <div class="input-div">
+        <input type="date" name="name" required />
+        <input type="time" style="margin-left: 10px;" name="answer" />
+      </div>
+    </div>
+
+    <div class="modality-div">
+      <div class="name">Modalidad<span class="required"> *</span></div>
+      <div class="input-div">
+        <input type="input" name="answer" placeholder="Tu respuesta" />
+      </div>
+    </div>
+
+    <div class="ubication-div">
+      <div class="name">Ubicación</div>
+      <div class="input-div">
+        <input type="input" name="answer" placeholder="Tu respuesta" />
+      </div>
+    </div>
+
+    <div>
+      <input class="btn" type="submit" name="Submit" />
+    </div>
+
+    <form action="event.html">
+      <input class="btn" type="submit" value="Cancelar" style="margin-left: 7%;"/>
+    </form>
+
+    <div class="last-div">
+      <p class="never">Esto es una versión beta del proyecto de Eventos.</p>
+      <h2>ITSON</h2>
+    </div>
+  </div>
+  <!-- Google Form Template -->
+
+  <!-- Script para hacer la animacion del navbar -->
+  <script src="../javascript/navbar.js"></script>
 </body>
+
 </html>

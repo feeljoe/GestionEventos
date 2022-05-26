@@ -6,5 +6,4 @@ mongoose.connect(mongoDB, { useNewUrlParser: true })
 .then(() => {console.log("conexion exitosa")})
 .catch(err => {console.log(err)});
 
-
 module.exports = {mongoose};

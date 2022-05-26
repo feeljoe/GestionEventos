@@ -1,12 +1,24 @@
+// variables a utilizar
 var qrcode = require("qrcode");
+const Alumno = require('../models/Alumno')
+const Evento = require('../models/Evento')
+const { default: mongoose } = require('mongoose')
 
-function makeCode () {      
-    var id = document.getElementById("id");
-    var carrera = document.getElementById("carrera");
-    var nombre = document.getElementById("nombre");
-    var apellido = document.getElementById("apellido");
-    var evento = document.getElementById("evento");
-    var registro = id + ", " + carrera + ", " + nombre + ", " + apellido + ", " + evento
+// Funcion para crear el codigo qr
+function makeCode (req,res) {      
+    var id = req.body.id
+    var alumnos = Evento.find(
+        {alumnos: {"$in":[id]}});
+
+    console.log(alumnos);
+
+    Alumno.findOne({id:id})
+    .then(alu => {
+        if(alu) {
+            const id = alu._id.toString()
+            const registro = id + "," + evento
+        }
+    })
     if (!registro.value) {
         registro.focus();
         return;

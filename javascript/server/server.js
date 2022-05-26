@@ -1,19 +1,14 @@
+// Variables a utilizar
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-// const {mongoose} = require("./javascript/database/Connection.js");
 const router = require('../server/routes.js');
 const ErrorHandler = require('../errorHandler/errorHandler.js');
-
-
 const app = express();
 app.set('port', 3000);
 app.use(express.json());
-
 app.use(cors({ origin: '*' }));
-
 app.use('/api', router);
-
 
 // obtiene la ruta del directorio publico donde se encuentran los elementos estaticos (css, js).
 var publicPath = path.resolve(__dirname, '../public'); //path.join(__dirname, 'public'); también puede ser una opción
@@ -25,8 +20,6 @@ app.use(express.static(publicPath));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '../public/login.html'));
   });
-
-
 app.all('*', (req, resp, next) => {
     next(
         new ErrorHandler(

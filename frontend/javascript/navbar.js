@@ -5,6 +5,8 @@ var selectorNewAnim = $('#navbar-animmenu').find('li').length;
 var activeItemNewAnim = tabsNewAnim.find('.active');
 var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
 var itemPosNewAnimLeft = activeItemNewAnim.position();
+
+// Metodo para que, al hacer clic en algun menu del navbar, se ejecute una animacion
 $(".hori-selector").css({
 	"left":itemPosNewAnimLeft.left + "px",
 	"width": activeWidthNewAnimWidth + "px"

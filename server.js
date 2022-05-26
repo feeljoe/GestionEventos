@@ -17,7 +17,7 @@ var publicPath = path.resolve(__dirname, "../public"); //path.join(__dirname, 'p
 app.use(express.static(publicPath));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/frontend/html/index.html");
+  res.sendFile(__dirname + "/frontend/html/login.html");
 });
 
 app.use(express.urlencoded({ extended: true }));

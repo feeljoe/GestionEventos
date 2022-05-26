@@ -6,7 +6,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3",
     "nodejs": "^0.0.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "qrcodejs": "^1.0.0"
   },
   "name": "gestioneventos",
   "description": "Proyecto de sistema de gestión de eventos\r Este sistema funciona para generar, actualizar y eliminar eventos, registrar asistencias a dicho evento y poder visualizar en un reporte de asistencias las personas que fueron al evento.\r Solo los organizadores podrán gestionar un evento.",
