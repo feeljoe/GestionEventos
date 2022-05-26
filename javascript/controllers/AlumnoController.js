@@ -1,8 +1,10 @@
+// Variables a utilizar
 const Alumno = require('../models/Alumno')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { default: mongoose } = require('mongoose')
 
+// Metodo para registrar un nuevo alumno en un evento
 const register = (req, res, next) => {
     bcrypt.hash(req.body.contrasenna, 10, function(err, hashedPass){
         if(err){
@@ -34,6 +36,7 @@ const register = (req, res, next) => {
     })
 }
 
+// Metodo para iniciar sesión
 const login = async (req, res, next) =>{
     console.log(req.body);
 
@@ -57,13 +60,14 @@ const login = async (req, res, next) =>{
                     let token = jwt.sign({name: alu.nombre}, 'verySecretValue', {expiresIn:'1h'})
                     res.status(200).json({
                         message: 'Inicio de sesión correcto',
-                        token
+                        token,
+                        sesion:alu
                     });
                 }else{
                     console.log("RESULT FALSE");
 
                     res.status(404).json({
-                        message: 'la contraseña no es corecta'
+                        message: 'la contraseña no es correcta'
                     });
                 }
             })
