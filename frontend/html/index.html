@@ -1,55 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/button.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script type="text/javascript" src="../javascript/navbar.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <title>Index</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../css/navbar.css" />
-  <script type="text/javascript" src="../javascript/navbar.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <title>Index</title>
-</head>
-
-<body>
-  <!-- navbar -->
-  <div id="navbar-animmenu">
-    <ul class="show-dropdown main-navbar">
-      <div class="hori-selector">
-        <div class="left"></div>
-        <div class="right"></div>
-      </div>
-      <li>
-        <div id="img">
-          <img src="../img/logoItson.png" width="100px" class="logo" />
+  <body>
+    <!-- navbar -->
+    <div id="navbar-animmenu">
+      <ul class="show-dropdown main-navbar">
+        <div class="hori-selector">
+          <div class="left"></div>
+          <div class="right"></div>
         </div>
-      </li>
-      <li class="active">
-        <a href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Inicio</a>
-      </li>
-      <li>
-        <a href="../html/event.html"><i class="far fa-address-book"></i>Eventos</a>
-      </li>
-    </ul>
+        <li>
+          <div id="img">
+            <img src="../img/logoItson.png" width="100px" class="logo" />
+          </div>
+        </li>
+        <li class="active">
+          <a href="javascript:void(0);"
+            ><i class="fas fa-tachometer-alt"></i>Inicio</a
+          >
+        </li>
+        <li>
+          <a href="../html/event.html"
+            ><i class="far fa-address-book"></i>Ver eventos</a
+          >
+        </li>
+      </ul>
 
-    <ul class="signoff">
-      <li>
-        <a href="../html/login.html"><i></i>Cerrar Sesión</a>
-      </li>
-    </ul>
-  </div>
-  <!-- navbar -->
-
-  <!-- Mensaje de bienvenida  -->
-  <main>
-    <div class="middle">
-      <h1>¡Bienvenido de vuelta!</h1>
+      <ul class="signoff">
+        <li>
+          <a href="../html/login.html"><i></i>Cerrar Sesión</a>
+        </li>
+      </ul>
     </div>
-  </main>
-  <!-- Mensaje de bienvenida  -->
+    <!-- navbar -->
 
-  <!-- Script para animación del navbar -->
-  <script src="../javascript/navbar.js"></script>
-</body>
+    <!-- Mensaje de bienvenida  -->
+    <main>
+      <div class="middle">
+        <h1>¡Bienvenido de vuelta!</h1>
+        <a href="../html/formO.html" class="button" style="vertical-align: middle">
+          <span>Crear evento </span>
+        </a>
+      </div>
+    </main>
+    <!-- Mensaje de bienvenida  -->
 
+    <!-- Script para animación del navbar -->
+    <script src="../javascript/navbar.js"></script>
+  </body>
 </html>

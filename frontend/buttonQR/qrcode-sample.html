@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="qrcode.css" />
+    <title>Testeo de css de Codigo QR</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Testeo de css de Codigo QR</h1>
+      <button
+        tabindex="0"
+        role="button"
+        class="button button2"
+        data-toggle="popover"
+        data-trigger="focus"
+        data-placement="bottom"
+        title="QR Code"
+        data-url=""
+      >
+        Crear evento
+      </button>
+      <div
+        id="qrcode"
+        style="display: none; width: auto; height: auto; padding: 10px"
+      ></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./qrcode.min.js?ver=v1.0"></script>
+    <script type="text/javascript">
+      var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 80,
+        height: 80,
+      });
+      function makeQrcode(e) {
+        qrcode.makeCode(e.attr("data-url"));
+      }
+      jQuery(document).ready(function () {
+        jQuery("[data-toggle='popover']").popover(
+          (options = {
+            content: jQuery("#qrcode"),
+            html: true, // important! popover html content (tag: "#qrcode") which contains an image
+          })
+        );
+
+        jQuery("[data-toggle='popover']").on("show.bs.popover", function (e) {
+          makeQrcode(jQuery(this));
+          jQuery("#qrcode").show();
+        });
+      });
+    </script>
+  </body>
+</html>
