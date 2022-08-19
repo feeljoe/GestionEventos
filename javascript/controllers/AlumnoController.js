@@ -24,13 +24,13 @@ const register = (req, res, next) => {
             if (err) {
               res.status(400).json({
                 status: "error",
-                message: `error al crear el evento: ${err}`,
+                message: `error al crear el alumno: ${err}`,
                 error: err,
               });
             } else
               res.status(201).json({
                 status: "success",
-                message: `evento creado con éxito`,
+                message: `alumno creado con éxito`,
               });
           }));
     })

@@ -6,7 +6,8 @@ var modeloOrganizador = new Schema({
     areaCoordinacion: String,
     nombre: String,
     apellido: String,
-    contrasenna: String
+    contrasenna: String,
+    rol:String
 });
 
 var modelo = mongoose.model('organizadores', modeloOrganizador);

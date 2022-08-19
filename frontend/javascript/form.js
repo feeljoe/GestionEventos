@@ -3,6 +3,27 @@
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 //
+const eventoController = require("../../javascript/controllers/EventoController.js")
+
+function crearEvento(){
+  var body
+  var titulo = document.getElementById("titulo")
+  var descripcion = document.getElementById("descripcion")
+  var lugar = document.getElementById("ubicacion")
+  var fecha = document.getElementById("fecha")
+  var tiempo = document.getElementById("tiempo")
+  var date = fecha + tiempo
+  var fechaCompleta = new Date(date)
+  body = {titulo, fechaCompleta, lugar, descripcion}
+  if(body!=null){
+    JSON.stringify(body)
+    eventoController.guardarEvento(body)
+    alert("evento creado con exito.")
+  }else{
+    alert("no se pudo crear el evento, revise los campos.")
+  }
+  
+}
 $("#bootstrapForm").submit(function (event) {
   event.preventDefault();
   var extraData = {};

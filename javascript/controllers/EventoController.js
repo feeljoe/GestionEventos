@@ -1,4 +1,3 @@
-// Variables a utilizar
 const Evento = require("../models/Evento.js");
 const { getAlumno } = require("./AlumnoController.js");
 
@@ -25,6 +24,10 @@ const guardarEvento = (request, response) => {
 };
 
 //Obtiene los eventos registrados en la base de datos
+/* este lo pensé para que muestre todos los eventos si
+   eres un alumno, para poder registrarte a uno que te 
+   llame la atención, pero si eres un organizador que
+   aparezcan como editables los que sean propios.*/
 const getEventos = (req, res) => {
   Evento.find((err, evento) => {
     if (err) {
@@ -42,8 +45,11 @@ const getEventos = (req, res) => {
 };
 
 //Obtiene el evento registrado dependiendo del id que se ingrese
+/*Este se me ocurrió para buscar un evento en específico, solo que
+  sería enfocado para los organizadores por si estos tienen más de 
+  un evento y quieren hacer algo con alguno en específico.*/
 const getEvento = (req, res) => {
-  Evento.findById(req.body._id, (err, evento) => {
+  Evento.findById(req.params._id, (err, evento) => {
     if (err) {
       res.status(400).json({
         status: "error",
@@ -60,7 +66,7 @@ const getEvento = (req, res) => {
 
 //Elimina el evento de la base de datos
 const eliminarEvento = (req, res) => {
-  Evento.findByIdAndDelete({ _id: req.body._id }, (err, evento) => {
+  Evento.findByIdAndDelete({ _id: req.params._id }, (err, evento) => {
     if (err) {
       res.status(400).json({
         status: "error",
@@ -78,7 +84,7 @@ const eliminarEvento = (req, res) => {
 //Actualiza el evento en la base de datos, ya sea cambio de nombre, lugar, fecha, etc 
 const actualizarEvento = (req, res) => {
   Evento.findByIdAndUpdate(
-    { _id: req.body._id },
+    { _id: req.params._id },
     req.body,
     { new: true },
     (err, evento) => {
@@ -98,32 +104,33 @@ const actualizarEvento = (req, res) => {
 };
 
 //Obtiene los alumnos registrados en el evento
+/*Este lo pensé para hacer un tipo de comparación 
+  al momento de hacer el reporte en el que se muestre
+  el total de alumnos registrados frente al total de
+  alumnos que asistieron.*/
 const getAlumnosPorEvento = (req, res) => {
-  const idEvento = req.body.idEvento;
-  
-  Evento.findById(idEvento, (err, evento) => {
-      if (err) {
+  Evento.findById(req.params.id, (err, evento) => {
+    let alumnos = [];
+    console.log(evento);
+    for (i = 0; i < evento.alumnos.length; i++) {
+      alumnos.push(getAlumno(evento.alumnos[i].toString()));
+      console.log(typeofevento.alumnos[i].toString());
+      console.log(alumnos);
+    }
+
+    if (err) {
       res.status(400).json({
         status: "error",
-        message: `Error al obtener los alumnos: ${err}`,
+        message: `Error al obtener los alumnos del evento: ${err}`,
+      });
+    } else {
+      res.status(200).json({
+        status: "success",
+        data: alumnos,
       });
     }
- 
-    res.status(200).json({alumnosRegistrados:evento.alumnos});
-  }).populate("alumnos");
+  });
 };
-
-const addAlumnoAEvento = (req, res) =>{
-  const idEvento = req.body.idEvento;
-  const idAlumno = req.body.idAlumno;
-
-    Evento.updateOne({_id:idEvento},{$addToSet:{alumnos:idAlumno}},(err, evento)=>{
-      if(err){
-        res.status(400).json({message: `Error al agregar el alumno al evento: ${err}`});
-      }
-      res.status(200).json({message: `Alumno agregado al evento con éxito`});
-    });
-}; 
 
 module.exports = {
   guardarEvento,
@@ -131,6 +138,5 @@ module.exports = {
   getEventos,
   eliminarEvento,
   actualizarEvento,
-  getAlumnosPorEvento,
-  addAlumnoAEvento
+  getAlumnosPorEvento
 };

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/form.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+ 
   <title>Document</title>
 </head>
 
@@ -36,6 +36,7 @@
   </div>
 
   <!-- Google Form Template -->
+  <form onsubmit="crearEvento()">
   <div class="form">
     <div class="title-div">
       <h1>Creación de evento</h1>
@@ -47,47 +48,50 @@
         Nombre del evento<span class="required"> *</span>
       </div>
       <div class="input-div">
-        <input type="input" name="answer" placeholder="Tu respuesta" />
+        <input type="input" name="answer" placeholder="Tu respuesta" id="titulo"/>
       </div>
     </div>
 
     <div class="description-div">
       <div class="name">Descripción</div>
       <div class="input-div">
-        <input type="input" name="answer" placeholder="Tu respuesta" />
+        <input type="input" name="answer" placeholder="Tu respuesta"  id="descripcion"/>
       </div>
     </div>
 
     <div class="ubication-div">
       <div class="name">Fecha y hora</div>
       <div class="input-div">
-        <input type="date" name="name" required />
-        <input type="time" style="margin-left: 10px;" name="answer" />
+        <input type="date" name="name" required id="fecha"/>
+        <input type="time" style="margin-left: 10px;" name="answer" id= "tiempo"/>
       </div>
     </div>
 
     <div class="modality-div">
       <div class="name">Modalidad<span class="required"> *</span></div>
       <div class="input-div">
-        <input type="input" name="answer" placeholder="Tu respuesta" />
+        <input type="input" name="answer" placeholder="Tu respuesta" id="modalidad"/>
       </div>
     </div>
 
     <div class="ubication-div">
       <div class="name">Ubicación</div>
       <div class="input-div">
-        <input type="input" name="answer" placeholder="Tu respuesta" />
+        <input type="input" name="answer" placeholder="Tu respuesta" id="ubicacion"/>
       </div>
     </div>
 
     <!-- Codigo para crear el evento -->
     <div>
-      <input class="btn" type="submit" name="Submit" />
+      <button class="btn" type="submit"> Crear Evento </button>
     </div>
 
-    <form action="index.html">
-      <input class="btn" type="submit" value="Cancelar" style="margin-left: 7%;"/>
-    </form>
+    <div>
+      <a href="../html/index.html" class="button" style="vertical-align: middle">
+        <span>Cancelar </span>
+      </a>
+    </div>
+  </form>
 
     <div class="last-div">
       <p class="never">Esto es una versión beta del proyecto de Eventos.</p>
@@ -95,9 +99,11 @@
     </div>
   </div>
   <!-- Google Form Template -->
+  <script type="text/javascript" src="../javascript/form.js"></script>
 
   <!-- Script para hacer la animacion del navbar -->
   <script src="../javascript/navbar.js"></script>
+  
 </body>
 
 </html>

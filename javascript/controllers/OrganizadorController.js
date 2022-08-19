@@ -53,10 +53,11 @@ const login = async (req, res, next) =>{
                         error: err
                     });
                 }
+                console.log(result)
                 if(result){
                     console.log("RESULT TRUE");
 
-                    let token = jwt.sign({name: alu.nombre}, 'verySecretValue', {expiresIn:'1h'})
+                    let token = jwt.sign({name: orga.nombre}, 'verySecretValue', {expiresIn:'1h'})
                     res.status(200).json({
                         message: 'Inicio de sesión correcto',
                         token

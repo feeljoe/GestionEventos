@@ -7,6 +7,7 @@ var modeloAlumno = new Schema({
     nombre: String,
     apellido: String,
     contrasenna: String,
+    rol:String,
     asistencia: Boolean
 });
 var modelo = mongoose.model('alumnos', modeloAlumno);

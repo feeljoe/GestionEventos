@@ -1,7 +1,41 @@
+const Organizador = require('../../javascript/models/Organizador')
+const Alumno = require('../../javascript/models/Alumno')
 const sesion = JSON.parse(localStorage.getItem('sesion'));
+
 async function cargarEventos() {
     const eventos = await fetchEventos();
     const lista = document.getElementById('lista');
+    var titulo = ''
+    var accion = ''
+    var clase = ''
+    let usuario = {}
+    console.log(sesion.id)
+    Organizador.findOne({id:sesion.id})
+    .then(orga => {
+        console.log(orga)
+        if(orga){
+            usuario = orga
+        }     
+        })
+    Alumno.findOne({id:id})
+    .then(alu =>{
+        console.log(alu)
+        if(alu){
+            usuario = alu
+        }
+    })
+        if(usuario){
+            if(usuario.rol === "organizador"){
+                titulo = 'Generar Reporte'
+                accion = 'generarReporte'
+                clase = 'btnReporte'
+            }else{
+                titulo = 'Unirse a evento'
+                accion = 'UnirseEvento'
+                clase = 'btnUnirse'
+            }
+        }
+    
     eventos.data.forEach(evento => {
         lista.innerHTML += `
     <div class="evento">
@@ -12,7 +46,7 @@ async function cargarEventos() {
           <p class="info1">Descripción: ${evento.descripcion}</p>
         </div>
         <div class="botones">
-          <button onclick='UnirseEvento("${evento._id}");' class="btnUnirse">Unirse a evento</button>
+          <button onclick='${accion}("${evento._id}");' class="${clase}">${titulo}</button>
           <a style="padding-left: 10%; margin-bottom: 5%;" tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus"
           data-placement="bottom" title="QR Code" data-url="${sesion._id}">Popover QR Code</a>
           <div id="qrcode" style="width:auto; height:auto;padding:15px;"></div>
@@ -118,7 +152,24 @@ async function UnirseEvento(id) {
     generarQr();
     // location.reload();
 }
-
+async function generarReporte(id){
+    const result = await fetchGetAlumnosEvento(id);
+    console.log(result);
+}
+async function fetchGetAlumnosEvento(id) {
+    const data = {
+        idEvento: id
+    }
+    const response = await fetch('http://localhost:3000/api/registrosEvento', {
+        method: 'GET',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    console.log(response)
+    return await response.json();
+}
 async function fetchAddEventoAlumno(id) {
     const data = {
         idEvento: id,
