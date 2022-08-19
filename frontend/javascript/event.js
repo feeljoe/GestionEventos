@@ -1,58 +1,46 @@
-const Organizador = require('../../javascript/models/Organizador')
-const Alumno = require('../../javascript/models/Alumno')
 const sesion = JSON.parse(localStorage.getItem('sesion'));
+
+const isOrganizador = () => {
+    const sesion = JSON.parse(localStorage.sesion)
+    return "rol" in sesion && sesion.rol === "organizador"
+}
 
 async function cargarEventos() {
     const eventos = await fetchEventos();
     const lista = document.getElementById('lista');
-    var titulo = ''
-    var accion = ''
-    var clase = ''
-    let usuario = {}
-    console.log(sesion.id)
-    Organizador.findOne({id:sesion.id})
-    .then(orga => {
-        console.log(orga)
-        if(orga){
-            usuario = orga
-        }     
-        })
-    Alumno.findOne({id:id})
-    .then(alu =>{
-        console.log(alu)
-        if(alu){
-            usuario = alu
-        }
-    })
-        if(usuario){
-            if(usuario.rol === "organizador"){
-                titulo = 'Generar Reporte'
-                accion = 'generarReporte'
-                clase = 'btnReporte'
-            }else{
-                titulo = 'Unirse a evento'
-                accion = 'UnirseEvento'
-                clase = 'btnUnirse'
-            }
-        }
     
     eventos.data.forEach(evento => {
-        lista.innerHTML += `
-    <div class="evento">
-        <div class="info">
-          <h2 class="info1" style="font-weight: bold;">${evento.titulo}</h2>
-          <h3 class="info1">Fecha: ${formatDate(new Date(evento.fecha))}</h3>
-          <h3 class="info1">Ubicación: ${evento.lugar}</h3>
-          <p class="info1">Descripción: ${evento.descripcion}</p>
-        </div>
-        <div class="botones">
-          <button onclick='${accion}("${evento._id}");' class="${clase}">${titulo}</button>
-          <a style="padding-left: 10%; margin-bottom: 5%;" tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus"
-          data-placement="bottom" title="QR Code" data-url="${sesion._id}">Popover QR Code</a>
-          <div id="qrcode" style="width:auto; height:auto;padding:15px;"></div>
-        </div>        
-      </div>      
-    `
+
+        let row = ""
+        row += `
+        <div class="evento">
+            <div class="info">
+                <h2 class="info1" style="font-weight: bold;">${evento.titulo}</h2>
+                <h3 class="info1">Fecha: ${formatDate(new Date(evento.fecha))}</h3>
+                <h3 class="info1">Ubicación: ${evento.lugar}</h3>
+                <p class="info1">Descripción: ${evento.descripcion}</p>
+            </div>`
+        if(isOrganizador()){
+            row += `
+                <div class="botones">
+                    <button onclick='generarReporte("${evento._id}");' class="btnUnirse">Generar Reporte</button>
+                    <a style="padding-left: 10%; margin-bottom: 5%;" tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus"
+                    data-placement="bottom" title="QR Code" data-url="${sesion._id}">Popover QR Code</a>
+                    <div id="qrcode" style="width:auto; height:auto;padding:15px;"></div>
+                </div>        
+            </div>`
+        } else {
+            row += `
+                <div class="botones">
+                    <button onclick='UnirseEvento("${evento._id}");' class="btnUnirse">Unirse a evento</button>
+                    <a style="padding-left: 10%; margin-bottom: 5%;" tabindex="0" role="button" class="btn btn-success" data-toggle="popover" data-trigger="focus"
+                    data-placement="bottom" title="QR Code" data-url="${sesion._id}">Popover QR Code</a>
+                    <div id="qrcode" style="width:auto; height:auto;padding:15px;"></div>
+                </div>        
+            </div>`
+        }
+
+        lista.innerHTML += row
     })
 
 }
@@ -153,14 +141,34 @@ async function UnirseEvento(id) {
     // location.reload();
 }
 async function generarReporte(id){
-    const result = await fetchGetAlumnosEvento(id);
-    console.log(result);
+    const reporte = await fetchGenerarReporte(id);
+    const contenido = await reporte.text()
+
+    var a = window.document.createElement('a');
+    a.href = window.URL.createObjectURL(new Blob([contenido], {type: 'text/csv'}))
+    a.download = 'reporte.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+async function fetchGenerarReporte(id){
+    const data ={
+        idEvento:id
+    }
+    const response = await fetch('/api/eventoReporte', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    return response;
 }
 async function fetchGetAlumnosEvento(id) {
     const data = {
         idEvento: id
     }
-    const response = await fetch('http://localhost:3000/api/registrosEvento', {
+    const response = await fetch('/api/registrosEvento', {
         method: 'GET',
         body: JSON.stringify(data),
         headers: {
@@ -176,7 +184,7 @@ async function fetchAddEventoAlumno(id) {
         idAlumno: sesion._id
     }
     const response = await fetch('http://localhost:3000/api/eventoAlumno', {
-        method: 'PUT',
+        method: 'GET',
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json'

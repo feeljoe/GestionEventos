@@ -78,7 +78,30 @@ const login = async (req, res, next) =>{
         }
     })
 }
+const getAlumno = (req, res) => {
+    Alumno.findById(req.params._id, (err, alumno) => {
+      if (err) {
+        res.status(400).json({
+          status: "error",
+          message: `Error al obtener el alumno: ${err}`,
+        });
+      } else {
+        res.status(200).json({
+          status: "success",
+          data: alumno,
+        });
+      }
+    });
+  };
+
+const getAlumnoObject = (id) => {
+    const alu = Alumno.findOne({_id:id})
+    return alu
+}
+
 module.exports ={
     register,
-    login
+    login,
+    getAlumno,
+    getAlumnoObject
 }

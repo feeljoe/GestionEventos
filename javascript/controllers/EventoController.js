@@ -1,12 +1,11 @@
 const Evento = require("../models/Evento.js");
-const { getAlumno } = require("./AlumnoController.js");
+const Alumno = require("./AlumnoController.js");
 
 //Guarda un evento nuevo en la base de datos
 const guardarEvento = (request, response) => {
   const evento = new Evento({
     ...request.body,
   });
-
   evento.save((err) => {
     if (err) {
       response.status(400).json({
@@ -14,12 +13,13 @@ const guardarEvento = (request, response) => {
         message: `error al crear el evento: ${err}`,
         error: err,
       });
-    } else
-      response.status(201).json({
-        status: "success",
-        message: `evento creado con éxito`,
-        evento,
-      });
+    } else {
+        response.status(201).json({
+          status: "success",
+          message: `evento creado con éxito`,
+          evento,
+        });
+    }
   });
 };
 
@@ -132,11 +132,28 @@ const getAlumnosPorEvento = (req, res) => {
   });
 };
 
+const generarReporte = async (req, res) => {
+  const idEvento = req.body.idEvento
+  const evento =  await Evento.findOne({_id:idEvento})
+  
+  let csv_contenido = "ID, NOMBRE, APELLIDO, CARRERA\n"
+  for (let i = 0; i < evento.alumnos.length; i++) {
+    const id_alumno = evento.alumnos[i];
+    const alumno = await Alumno.getAlumnoObject(id_alumno)
+    if(!alumno)
+      continue
+    csv_contenido+=`${alumno.id}, ${alumno.nombre}, ${alumno.apellido}, ${alumno.carrera}\n`
+  }
+
+  res.send(csv_contenido);
+}
+
 module.exports = {
   guardarEvento,
   getEvento,
   getEventos,
   eliminarEvento,
   actualizarEvento,
-  getAlumnosPorEvento
+  getAlumnosPorEvento,
+  generarReporte
 };

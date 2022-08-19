@@ -35,6 +35,12 @@ const register = (req, res, next) => {
     })
 }
 
+// const isOrganizador = async (req,res,next) => {
+//     const id = req.body.id
+//     const orga = await Organizador.findOne({_id:id})
+//     return orga.rol === "organizador"
+// }
+
 // metodo para loguearse
 const login = async (req, res, next) =>{
     console.log(req.body);
@@ -60,7 +66,8 @@ const login = async (req, res, next) =>{
                     let token = jwt.sign({name: orga.nombre}, 'verySecretValue', {expiresIn:'1h'})
                     res.status(200).json({
                         message: 'Inicio de sesión correcto',
-                        token
+                        token,
+                        sesion:orga
                     });
                 }else{
                     console.log("RESULT FALSE");

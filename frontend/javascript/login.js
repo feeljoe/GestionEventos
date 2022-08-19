@@ -24,9 +24,9 @@ function submitData(e) {
         const token = response.token;
         const sesion = response.sesion;
 
-        window.location.href = '/html/index.html';
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('sesion', JSON.stringify(sesion));
+        window.location.href = '/html/index.html';
       } else {
         fetch('/api/loginA', {
           method: 'POST', // or 'PUT'
@@ -41,9 +41,9 @@ function submitData(e) {
               const token = response.token;
               const sesion = response.sesion;
       
-              window.location.href = '/html/event.html';
               window.localStorage.setItem('token', token);
               window.localStorage.setItem('sesion', JSON.stringify(sesion));
+              window.location.href = '/html/event.html';
             } else {
               alert("Autorización denegada");
             }
